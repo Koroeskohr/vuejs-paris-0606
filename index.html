@@ -6,11 +6,13 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.5.0/aframe.js"></script>
 </head>
 <body>
-  <a-scene>
+  <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
     <a-assets>
       <img src="http://i.imgur.com/fQ3I0WW.jpg" id="sky">
     </a-assets>
-    <a-box position="0 0 -5" rotation="0 0 0" color="#4CC3D9">
+    <a-box 
+      position="0 0 -5" rotation="0 0 0" color="#4CC3D9"
+    >
        <a-animation 
         attribute="rotation"
         dur="3000"

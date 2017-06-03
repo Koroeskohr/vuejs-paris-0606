@@ -7,29 +7,39 @@ Vue.use(Vuex)
 
 const state = {
   lang: settings.lang,
-
+  displayDebug: true,
   assets: {
-    images: {}
+    images: []
   }
 }
 
 const mutations = {
-  ADD_IMAGE_ASSET(state, imageUrl) {
-    state.assets.images.push(imageUrl)
+  ADD_IMAGE_ASSET(state, image) {
+    state.assets.images.push(image)
   }
 }
 
 const actions = {
-  addImageAsset({commit}, imageUrl) {
-    commit('ADD_IMAGE_ASSET', imageUrl)
+  addImageAsset({commit}, image) {
+    commit('ADD_IMAGE_ASSET', image)
   }
+}
+
+const getters = {
+  textureCount: state => {
+    return state.assets.images.length
+  },
+  textureEmpty: state => {
+    return state.assets.images.length == 0
+  },
 }
 
 
 const store = new Vuex.Store({
   state,
   mutations,
-  actions
+  actions,
+  getters
 })
 
 export default store

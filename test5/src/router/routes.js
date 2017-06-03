@@ -1,4 +1,4 @@
-import Main from '../views/Mairn'
+import Main from '../views/Main'
 
 module.exports = [
   {

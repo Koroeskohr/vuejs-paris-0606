@@ -28,7 +28,7 @@ for (let f of files) {
 }
 
 if (process.env['NODE_ENV'] === 'development') {
-  console.log(settings)
+  console.log("Settings : ", settings)
 }
 
 module.exports = settings

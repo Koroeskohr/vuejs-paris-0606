@@ -1,33 +1,35 @@
 <template>
   <a-assets>
-    <img v-for="img in images" src="img" crossorigin="anonymous">
+    <img v-for="img in images" :src="img.url" :id="img.id" crossorigin="anonymous">
   </a-assets>
 </template>
 
 <script>
-  import distantAssets from "../assets/distantAssets"
+  import { distantAssets } from "../assets/distantAssets"
 
   export default {
     name: "Assets",
-    data() {
-
+    data () {
+      return {
+        distantAssets: distantAssets
+      }
     },
     computed: {
       images: function() {
-        this.$store.assets.images
+        return this.$store.state.assets.images
       }
     },
     methods: {
-      getImageUrlFromDistantAssets: function(id) {
-        if (!distantAssets.hasOwnProperty(id))
-          throw "No image url for key ${id}"
+      getImageFromDistantAssets: function(id) {
+        if (!this.distantAssets.hasOwnProperty(id))
+          throw `No image url for key ${id}`
           
-        return distantAssets[id]
+        return {id: id, url: this.distantAssets[id]}
       }
     },
     mounted() {
       ["library"].map(key => 
-        this.$store.dispatch('addImageAsset', getImageUrlFromDistantAssets(key))
+        this.$store.dispatch('addImageAsset', this.getImageFromDistantAssets(key))
       )
     }
   }

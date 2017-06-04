@@ -5,13 +5,13 @@
 </template>
 
 <script>
-  import { distantAssets } from "../assets/distantAssets"
+  import { assets } from "../assets"
 
   export default {
     name: "Assets",
     data () {
       return {
-        distantAssets: distantAssets
+        assets: assets
       }
     },
     computed: {
@@ -20,19 +20,16 @@
       }
     },
     methods: {
-      requireAsset: function (url) { 
-        return `../assets/${url}` 
-      },
-      getImageFromDistantAssets: function(id) {
-        if (!this.distantAssets.hasOwnProperty(id))
+      getImageFromAssets: function(id) {
+        if (!this.assets.hasOwnProperty(id))
           throw `No image url for key ${id}`
           
-        return {id: id, url: this.distantAssets[id]}
+        return {id: id, url: this.assets[id]}
       }
     },
     mounted() {
-      ["library"].map(key => 
-        this.$store.dispatch('addImageAsset', this.getImageFromDistantAssets(key))
+      Object.keys(this.assets).map(key => 
+        this.$store.dispatch('addImageAsset', this.getImageFromAssets(key))
       )
     }
   }

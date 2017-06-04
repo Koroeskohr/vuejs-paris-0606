@@ -19,12 +19,18 @@ const state = {
 const mutations = {
   ADD_IMAGE_ASSET(state, image) {
     state.assets.images.push(image)
+  },  
+  LOAD_SCENE(state, scene) {
+    state.currentScene = scene
   }
 }
 
 const actions = {
   addImageAsset({commit}, image) {
     commit('ADD_IMAGE_ASSET', image)
+  },
+  loadScene({commit}, scene) {
+    commit('LOAD_SCENE', scene)
   }
 }
 

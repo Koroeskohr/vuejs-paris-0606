@@ -1,18 +1,21 @@
 <template>
   <div v-if="displayed" id="debug-component">
+    <h3>SCENE</h3>
+    <input v-model="sceneId" @keyup.enter="$store.dispatch('loadScene', sceneId)" placeholder="Load scene...">
+    
     <h3>STATE</h3>
     <p v-for="{key, state} in stateItemsToWatch">
       <a @click.prevent="removeState(key)" href="#">&times; </a>
       {{key}} : <pre>{{ state }}</pre>
     </p>
-    <input v-model="stateId" @keyup.enter="pushState">
+    <input v-model="stateId" @keyup.enter="pushState" placeholder="Add state...">
     
     <h3>GETTERS</h3>
     <p v-for="{key, getter} in gettersToWatch">
       <a @click.prevent="removeGetter(key)" href="#">&times; </a>
       {{key}} : {{ getter }}
     </p>
-    <input v-model="getterId" @keyup.enter="pushGetter">
+    <input v-model="getterId" @keyup.enter="pushGetter" placeholder="Add getter...">
   </div>
 </template>
 
@@ -29,10 +32,12 @@
           "textureCount"
         ],
         watchedState: [
-          "assets.images"
+          "currentScene",
+          "settings"
         ],
         getterId: "",
-        stateId: ""
+        stateId: "",
+        sceneId: ""
       }
     },
     computed: {

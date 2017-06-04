@@ -1,3 +1,3 @@
 export const distantAssets = {
-  library: "http://i.imgur.com/WoyAPNf.jpg"
+  library: "backgrounds/library.jpg"
 }

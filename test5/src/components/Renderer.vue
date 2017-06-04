@@ -1,8 +1,7 @@
 <template>
-  <a-scene>
+  <a-scene :debug="debug">
     <assets></assets>
-    <scene-test></scene-test>
-    <scene-test-2></scene-test-2>
+    <component :is="currentScene"></component>
   </a-scene>
 </template>
 
@@ -16,6 +15,14 @@
       "assets": Assets,
       "scene-test": SceneTest,
       "scene-test-2": SceneTest
+    },
+    computed: {
+      currentScene() {
+        return this.$store.state.currentScene
+      },
+      debug() {
+        return this.$store.state.settings.debug
+      }
     },
     data() {
       return {}

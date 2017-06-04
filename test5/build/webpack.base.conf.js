@@ -28,12 +28,14 @@ module.exports = {
     alias: {
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
+      'backgrounds': path.resolve(__dirname, '../src/assets/backgrounds'),
       'components': path.resolve(__dirname, '../src/components'),
       'views': path.resolve(__dirname, '../src/views'),
       'settings': path.resolve(__dirname, '../settings'),
       'locales': path.resolve(__dirname, '../locales'),
       'data': path.resolve(__dirname, '../src/data'),
-      'lib': path.resolve(__dirname, '../src/lib')
+      'lib': path.resolve(__dirname, '../src/lib'),
+      'utils': path.resolve(__dirname, '../src/utils')
     }
   },
   resolveLoader: {

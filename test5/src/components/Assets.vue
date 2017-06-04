@@ -1,6 +1,6 @@
 <template>
   <a-assets>
-    <img v-for="img in images" :src="img.url" :id="img.id" crossorigin="anonymous">
+    <img v-for="img in images" :src="require('assets/' + img.url)" :id="img.id" crossorigin="anonymous">
   </a-assets>
 </template>
 
@@ -20,6 +20,9 @@
       }
     },
     methods: {
+      requireAsset: function (url) { 
+        return `../assets/${url}` 
+      },
       getImageFromDistantAssets: function(id) {
         if (!this.distantAssets.hasOwnProperty(id))
           throw `No image url for key ${id}`

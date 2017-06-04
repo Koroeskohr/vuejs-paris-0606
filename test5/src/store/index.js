@@ -7,7 +7,10 @@ Vue.use(Vuex)
 
 const state = {
   lang: settings.lang,
-  displayDebug: true,
+  currentScene: "scene-test",
+  settings: {
+    debug: true,
+  },
   assets: {
     images: []
   }

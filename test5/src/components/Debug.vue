@@ -18,6 +18,8 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import { propertyAccessor } from 'utils'
+  import { sortBy } from 'lodash'
 
   export default {
     name: "Debug",
@@ -35,30 +37,23 @@
     },
     computed: {
       gettersToWatch () {
-        return this.watchedGetters.map(k => Object.assign({}, { key: k, getter: this.getterAt(k) }))
+        let getters = this.watchedGetters.map(k => Object.assign({}, { key: k, getter: this.getterAt(k) }))
+        return _.sortBy(getters, _.property("key"))
       },
       stateItemsToWatch () {
-        return this.watchedState.map(k => Object.assign({}, { key: k, state: this.stateAt(k) }))
+        let states = this.watchedState.map(k => Object.assign({}, { key: k, state: this.stateAt(k) }))
+        return _.sortBy(states, _.property("key"))
       },
       displayed () {
-        return this.$store.state.displayDebug
+        return this.$store.state.settings.debug
       }
     },
     methods: {
-      stateAccessor(acc, key)  {
-        let path = key.split(".")
-        if (path.length == 1) return acc[path[0]]
-        if (!acc.hasOwnProperty(path[0])) {
-          return null
-        }
-
-        return this.stateAccessor(acc[path[0]], path.slice(1).join("."))
-      },
       getterAt(key) {
         return this.$store.getters[key]
       },
       stateAt(key) {
-        let state = this.stateAccessor(this.$store.state, key)
+        let state = propertyAccessor(this.$store.state, key)
         if (state == null)
           throw "State doesnt exist !"
         return state
@@ -66,12 +61,16 @@
       pushGetter() {
         if (!this.$store.getters.hasOwnProperty(this.getterId)) 
           return
+        if (this.watchedGetters.includes(this.getterId))
+          return
         
         this.watchedGetters.push(this.getterId)
         this.getterId = ""
       },
       pushState() {
-        if (this.stateAccessor(this.$store.state, this.stateId) == null) 
+        if (propertyAccessor(this.$store.state, this.stateId) == null) 
+          return
+        if (this.watchedState.includes(this.stateId))
           return
         
         this.watchedState.push(this.stateId)

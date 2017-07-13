@@ -20,11 +20,11 @@
     "node-sass": "^3.10.0",
     "opn": "^4.0.2",
     "sass-loader": "^4.0.2",
-    "vue": "^2.0.0",
+    "vue": "^2.4.0",
     "vue-i18n": "^5.0.0",
     "vue-resource": "^1.0.3",
-    "vue-router": "^2.0.0",
-    "vuex": "^2.0.0",
+    "vue-router": "^2.4.0",
+    "vuex": "^2.4.0",
     "vuex-router-sync": "^3.0.0"
   },
   "devDependencies": {

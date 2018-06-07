@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.5.0/aframe.js"></script>
+  <script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script> 
+
+  <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+  <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
+    <a-assets>
+      <img src="logo.png" crossorigin="anonymous" id="logo">
+    </a-assets>
+
+    <a-entity camera look-controls wasd-controls>
+      <a-entity cursor="fuse: true; fuseTimeout: 500"
+                position="0 0 -1"
+                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                material="color: black; shader: flat">
+      </a-entity>
+      <a-entity light="type: point; intensity: 1; distance: 40;"></a-entity>
+    </a-entity>
+    <a-box id="box" cursor-listener="texture: #logo"  position="0 1 -5"></a-entity>
+    <a-gradient-sky material="shader: gradient; topColor: 150 230 240 ; bottomColor: 75 211 151;"></a-gradient-sky>
+  </a-scene>
+</body>
+</html>
